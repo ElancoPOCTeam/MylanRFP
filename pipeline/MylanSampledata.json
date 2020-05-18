@@ -1,0 +1,294 @@
+{
+	"name": "MylanSampledata",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": false,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Transactional_dataDataset",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": false,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlDWSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "EMP_FULL_NM",
+									"type": "String"
+								},
+								"sink": {
+									"name": "EMP_FULL_NM",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ACCT_TYPE",
+									"type": "String"
+								},
+								"sink": {
+									"name": "ACCT_TYPE",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LOCATION_ACCT_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "LOCATION_ACCT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SALES_CALLS_LOCATION_ACCT_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SALES_CALLS_LOCATION_ACCT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CALLS_LOCATION_ACCT_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CALLS_LOCATION_ACCT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SALES_LOCATION_ACCT_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SALES_LOCATION_ACCT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRODUCT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRODUCT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PRODUCT_CATEGORY",
+									"type": "String"
+								},
+								"sink": {
+									"name": "PRODUCT_CATEGORY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TERR_CD",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TERR_CD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TERR_DESC",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TERR_DESC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "REGN_CD",
+									"type": "String"
+								},
+								"sink": {
+									"name": "REGN_CD",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "REGN_DESC",
+									"type": "String"
+								},
+								"sink": {
+									"name": "REGN_DESC",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MONTH_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "MONTH_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "SEGMENT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SEGMENT",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TARGET_CNT",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TARGET_CNT",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "REACH_ACCT_ID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "REACH_ACCT_ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "TARGET_CALLS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "TARGET_CALLS",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "CALLS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CALLS",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "SALES_UNITS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "SALES_UNITS",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"name": "COACHING_VISITS",
+									"type": "String"
+								},
+								"sink": {
+									"name": "COACHING_VISITS",
+									"type": "Int32"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Transactional_dataDataset",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Transactional_dataDatasetDW",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

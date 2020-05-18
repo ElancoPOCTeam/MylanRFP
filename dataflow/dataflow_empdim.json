@@ -1,0 +1,38 @@
+{
+	"name": "dataflow_empdim",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CallHistoricalDataBlob",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSynapse_EMPDIM",
+						"type": "DatasetReference"
+					},
+					"name": "HCPDIM"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddDates"
+				},
+				{
+					"name": "Select1"
+				},
+				{
+					"name": "Aggregate1"
+				}
+			],
+			"script": "source(output(\n\t\tCALL_DATE as date 'MM/dd/yyyy',\n\t\tEMP_ID as string,\n\t\tPROD_ID as string,\n\t\tACCT_ID as string,\n\t\tHCP_ID as string,\n\t\tCALL_DURTN as string,\n\t\tCALL_CMMNT as string,\n\t\tEMP_FNAME as string,\n\t\tEMP_LNAME as string,\n\t\tHCP_FNAME as string,\n\t\tHCP_LNAME as string,\n\t\tHCP_ADDR as string,\n\t\tHCP_CITY as string,\n\t\tHCP_ZIP as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1\nsource1 derive(UPDATED_DT = currentUTC(),\n\t\tCREATED_DT = currentUTC(),\n\t\tDATA_SRC = upper('MD5')) ~> AddDates\nAddDates select(mapColumn(\n\t\tEMP_ID,\n\t\tEMP_FNAME,\n\t\tEMP_LNAME,\n\t\tUPDATED_DT,\n\t\tCREATED_DT,\n\t\tDATA_SRC\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 aggregate(groupBy(DATA_SRC = DATA_SRC,\n\t\tEMP_ID = EMP_ID,\n\t\tEMP_FNAME = EMP_FNAME,\n\t\tEMP_LNAME = EMP_LNAME),\n\tCREATED_DT = max(CREATED_DT),\n\t\tUPDATED_DT = max(UPDATED_DT)) ~> Aggregate1\nAggregate1 sink(input(\n\t\tDATA_SRC as string,\n\t\tEMP_ID as string,\n\t\tEMP_FNAME as string,\n\t\tEMP_LNAME as string,\n\t\tCREATED_DT as timestamp,\n\t\tUPDATED_DT as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tformat: 'table',\n\tstaged: true,\n\tmapColumn(\n\t\tDATA_SRC,\n\t\tEMP_ID,\n\t\tEMP_FNAME,\n\t\tEMP_LNAME,\n\t\tCREATED_DT,\n\t\tUPDATED_DT\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> HCPDIM"
+		}
+	}
+}

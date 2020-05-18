@@ -1,0 +1,108 @@
+{
+	"name": "Transactional_dataDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OneTimeUsage"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Transaction_data.csv",
+				"container": "mylansampledata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "EMP_FULL_NM",
+				"type": "String"
+			},
+			{
+				"name": "ACCT_TYPE",
+				"type": "String"
+			},
+			{
+				"name": "LOCATION_ACCT_ID",
+				"type": "String"
+			},
+			{
+				"name": "SALES_CALLS_LOCATION_ACCT_ID",
+				"type": "String"
+			},
+			{
+				"name": "CALLS_LOCATION_ACCT_ID",
+				"type": "String"
+			},
+			{
+				"name": "SALES_LOCATION_ACCT_ID",
+				"type": "String"
+			},
+			{
+				"name": "PRODUCT",
+				"type": "String"
+			},
+			{
+				"name": "PRODUCT_CATEGORY",
+				"type": "String"
+			},
+			{
+				"name": "TERR_CD",
+				"type": "String"
+			},
+			{
+				"name": "TERR_DESC",
+				"type": "String"
+			},
+			{
+				"name": "REGN_CD",
+				"type": "String"
+			},
+			{
+				"name": "REGN_DESC",
+				"type": "String"
+			},
+			{
+				"name": "MONTH_ID",
+				"type": "String"
+			},
+			{
+				"name": "SEGMENT",
+				"type": "String"
+			},
+			{
+				"name": "TARGET_CNT",
+				"type": "String"
+			},
+			{
+				"name": "REACH_ACCT_ID",
+				"type": "String"
+			},
+			{
+				"name": "TARGET_CALLS",
+				"type": "String"
+			},
+			{
+				"name": "CALLS",
+				"type": "String"
+			},
+			{
+				"name": "SALES_UNITS",
+				"type": "String"
+			},
+			{
+				"name": "COACHING_VISITS",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

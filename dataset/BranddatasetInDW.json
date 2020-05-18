@@ -1,0 +1,33 @@
+{
+	"name": "BranddatasetInDW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OneTimeUsage"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "PRODUCT",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT_CATEGORY",
+				"type": "varchar"
+			},
+			{
+				"name": "BRAND",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BRAND"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

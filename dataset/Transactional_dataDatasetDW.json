@@ -1,0 +1,111 @@
+{
+	"name": "Transactional_dataDatasetDW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OneTimeUsage"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "EMP_FULL_NM",
+				"type": "varchar"
+			},
+			{
+				"name": "ACCT_TYPE",
+				"type": "varchar"
+			},
+			{
+				"name": "LOCATION_ACCT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "SALES_CALLS_LOCATION_ACCT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "CALLS_LOCATION_ACCT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "SALES_LOCATION_ACCT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT",
+				"type": "varchar"
+			},
+			{
+				"name": "PRODUCT_CATEGORY",
+				"type": "varchar"
+			},
+			{
+				"name": "TERR_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "TERR_DESC",
+				"type": "varchar"
+			},
+			{
+				"name": "REGN_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "REGN_DESC",
+				"type": "varchar"
+			},
+			{
+				"name": "MONTH_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "SEGMENT",
+				"type": "char"
+			},
+			{
+				"name": "TARGET_CNT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REACH_ACCT_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "TARGET_CALLS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CALLS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SALES_UNITS",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "COACHING_VISITS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MAX_CALL_DATE",
+				"type": "time",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TRANSACTION_DATA"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

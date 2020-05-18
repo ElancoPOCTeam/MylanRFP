@@ -1,0 +1,19 @@
+{
+	"name": "Veeva_MedicalEvents",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Salesforce1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Veeva"
+		},
+		"annotations": [],
+		"type": "SalesforceObject",
+		"schema": [],
+		"typeProperties": {
+			"objectApiName": "Medical_Event_vod__c"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

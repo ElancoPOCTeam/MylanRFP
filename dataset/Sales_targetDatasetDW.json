@@ -1,0 +1,39 @@
+{
+	"name": "Sales_targetDatasetDW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OneTimeUsage"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "PRODUCT",
+				"type": "varchar"
+			},
+			{
+				"name": "TERR_CD",
+				"type": "varchar"
+			},
+			{
+				"name": "SALES_TARGET",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MONTH_ID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SALES_TARGET"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

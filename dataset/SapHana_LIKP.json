@@ -1,0 +1,20 @@
+{
+	"name": "SapHana_LIKP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapHana1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "HANA"
+		},
+		"annotations": [],
+		"type": "SapHanaTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SAPABAP1",
+			"table": "LIKP"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

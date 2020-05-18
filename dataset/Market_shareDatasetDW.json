@@ -1,0 +1,35 @@
+{
+	"name": "Market_shareDatasetDW",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "OneTimeUsage"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "PRODUCT",
+				"type": "varchar"
+			},
+			{
+				"name": "SALES_TOTAL",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MONTH_ID",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "MARKET_SHARE"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

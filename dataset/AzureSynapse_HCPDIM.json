@@ -1,0 +1,57 @@
+{
+	"name": "AzureSynapse_HCPDIM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Veeva"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "HCP_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "CREATED_DT",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "HCP_FNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "HCP_LNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "HCP_ADDR",
+				"type": "varchar"
+			},
+			{
+				"name": "HCP_CITY",
+				"type": "varchar"
+			},
+			{
+				"name": "HCP_ZIP",
+				"type": "varchar"
+			},
+			{
+				"name": "UPDATED_DT",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "HCP_DIM"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

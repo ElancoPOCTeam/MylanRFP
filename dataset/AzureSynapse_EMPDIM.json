@@ -1,0 +1,49 @@
+{
+	"name": "AzureSynapse_EMPDIM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Veeva"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "DATA_SRC",
+				"type": "varchar"
+			},
+			{
+				"name": "EMP_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "EMP_FNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "EMP_LNAME",
+				"type": "varchar"
+			},
+			{
+				"name": "CREATED_DT",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "UPDATED_DT",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "EMP_DIM"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

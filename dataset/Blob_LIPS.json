@@ -1,0 +1,34 @@
+{
+	"name": "Blob_LIPS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Hana_AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "HANA"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('LIPS_',substring(formatDateTime(utcnow()),0,4),substring(formatDateTime(utcnow()),5,2),substring(formatDateTime(utcnow()),8,2),'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "LIPS",
+					"type": "Expression"
+				},
+				"container": "hanacontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

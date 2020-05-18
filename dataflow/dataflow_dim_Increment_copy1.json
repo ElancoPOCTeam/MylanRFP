@@ -1,0 +1,38 @@
+{
+	"name": "dataflow_dim_Increment_copy1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "IncrementCallDataset",
+						"type": "DatasetReference"
+					},
+					"name": "CallIncrementExtract"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "TestForTimeStamp",
+						"type": "DatasetReference"
+					},
+					"name": "HCPDIMIncrementLoad"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddDates"
+				},
+				{
+					"name": "ColumnMapping"
+				},
+				{
+					"name": "AlterRow1"
+				}
+			],
+			"script": "source(output(\n\t\tCALL_DATE as timestamp 'MM/dd/yyyy HH:mm:ss',\n\t\tEMP_ID as string,\n\t\tPROD_ID as string,\n\t\tACCT_ID as string,\n\t\tHCP_ID as string,\n\t\tCALL_DURTN as string,\n\t\tCALL_CMMNT as string,\n\t\tEMP_FNAME as string,\n\t\tEMP_LNAME as string,\n\t\tHCP_FNAME as string,\n\t\tHCP_LNAME as string,\n\t\tHCP_ADDR as string,\n\t\tHCP_CITY as string,\n\t\tHCP_ZIP as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> CallIncrementExtract\nCallIncrementExtract derive(UPDATED_DT = currentTimestamp(),\n\t\tCREATED_DT = currentTimestamp()) ~> AddDates\nAddDates select(mapColumn(\n\t\tHCP_ID,\n\t\tHCP_FNAME,\n\t\tHCP_LNAME,\n\t\tHCP_ADDR,\n\t\tHCP_CITY,\n\t\tHCP_ZIP,\n\t\tUPDATED_DT,\n\t\tCREATED_DT\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> ColumnMapping\nColumnMapping alterRow(upsertIf(true())) ~> AlterRow1\nAlterRow1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tmapColumn(\n\t\tHCP_ID,\n\t\tCREATED_DT,\n\t\tHCP_FNAME,\n\t\tHCP_LNAME,\n\t\tHCP_ADDR,\n\t\tHCP_CITY,\n\t\tHCP_ZIP,\n\t\tUPDATED_DT\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> HCPDIMIncrementLoad"
+		}
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"name": "SapHana_LIPS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SapHana1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "HANA"
+		},
+		"annotations": [],
+		"type": "SapHanaTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SAPABAP1",
+			"table": "LIPS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

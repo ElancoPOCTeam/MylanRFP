@@ -1,0 +1,84 @@
+{
+	"name": "IncrementCallDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Veeva_AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Veeva"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "call_extract_20200515.csv",
+				"container": "veevacontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "CALL_DATE",
+				"type": "String"
+			},
+			{
+				"name": "EMP_ID",
+				"type": "String"
+			},
+			{
+				"name": "PROD_ID",
+				"type": "String"
+			},
+			{
+				"name": "ACCT_ID",
+				"type": "String"
+			},
+			{
+				"name": "HCP_ID",
+				"type": "String"
+			},
+			{
+				"name": "CALL_DURTN",
+				"type": "String"
+			},
+			{
+				"name": "CALL_CMMNT",
+				"type": "String"
+			},
+			{
+				"name": "EMP_FNAME",
+				"type": "String"
+			},
+			{
+				"name": "EMP_LNAME",
+				"type": "String"
+			},
+			{
+				"name": "HCP_FNAME",
+				"type": "String"
+			},
+			{
+				"name": "HCP_LNAME",
+				"type": "String"
+			},
+			{
+				"name": "HCP_ADDR",
+				"type": "String"
+			},
+			{
+				"name": "HCP_CITY",
+				"type": "String"
+			},
+			{
+				"name": "HCP_ZIP",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
