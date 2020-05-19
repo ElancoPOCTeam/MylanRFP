@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "value": "adfMylan"
+        },
+        "AzureBlobStorage_LinkedService_connectionString": {
+            "value": ""
+        },
+        "AzureDatabricks_LinkedService_accessToken": {
+            "value": ""
+        },
+        "AzureSqlMI1_connectionString": {
+            "value": ""
+        },
+        "AzureSynapseAnalytics1_connectionString": {
+            "value": ""
+        },
+        "Hana_AzureBlobStorage1_connectionString": {
+            "value": ""
+        },
+        "IIGMetadata_connectionString": {
+            "value": ""
+        },
+        "Salesforce1_password": {
+            "value": ""
+        },
+        "Salesforce1_securityToken": {
+            "value": ""
+        },
+        "SapHana1_connectionString": {
+            "value": ""
+        },
+        "Veeva_AzureBlobStorage1_connectionString": {
+            "value": ""
+        },
+        "Salesforce1_properties_typeProperties_environmentUrl": {
+            "value": "https://test.salesforce.com/"
+        },
+        "Salesforce1_properties_typeProperties_username": {
+            "value": "cviewer@veeva.partner5.infosys"
+        }
+    }
+}
