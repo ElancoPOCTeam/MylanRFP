@@ -1,0 +1,72 @@
+{
+	"name": "SapHanaIngestionAndDQ",
+	"properties": {
+		"activities": [
+			{
+				"name": "LIPS Data Ingestion",
+				"type": "DatabricksSparkJar",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"mainClassName": "com.iig.core.SapHanaBlobStorageLoader",
+					"parameters": [
+						"4766#31485#1#1#/mnt/data"
+					],
+					"libraries": [
+						{
+							"jar": "dbfs:/mnt/data/jars/IIGDQJar.jar"
+						}
+					]
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LinkedService",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "LIPS Data Quality",
+				"type": "DatabricksSparkJar",
+				"dependsOn": [
+					{
+						"activity": "LIPS Data Ingestion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"mainClassName": "com.iig.core.DataQualityCheckADF",
+					"parameters": [
+						"4766#31486#1#1#/mnt/hanacontainer"
+					],
+					"libraries": [
+						{
+							"jar": "dbfs:/mnt/data/jars/IIGDQJar.jar"
+						}
+					]
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LinkedService",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
